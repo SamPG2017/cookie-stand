@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 
 // Create all object literals for five stores provided, using information provided along with names
@@ -13,9 +13,43 @@ var storeDetailsPike = {
     return Math.floor(Math.random() * (this.maxCustPerHourPike - this.minCustPerHourPike + 1)) + this.minCustPerHourPike; //The maximum is inclusive and the minimum is inclusive 
   }
 }
-//console.log('Store Details Pike: ', storeDetailsPike);
-console.log('RandomPike: ', storeDetailsPike.getRandomIntInclusive());
 
+var avgCookiePerCustPike = storeDetailsPike.avgCookiePerCustPike; 
+console.log('avgCookiePerCustPike is: ', typeof avgCookiePerCustPike);
+//console.log('Store Details Pike: ', storeDetailsPike);
+console.log('LINE 18 -- Random Number for Pike (bt 22 & 65): ', typeof storeDetailsPike.getRandomIntInclusive());
+
+var RandomPike = storeDetailsPike.getRandomIntInclusive();
+console.log(typeof RandomPike); 
+var hoursArray = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+
+
+function multiply (a,b) {
+  // multiply (avgCookiePerCustPike * RandomPike)
+  // avgCookiePerCustPike has to be a property
+  // of the Pike location so 
+  // storeDetailsPike.avgCookiePerCustPike * RandomPike
+   var product = (a * b);
+   console.log('The product of a & b is: ', product);
+   return Math.round(product);
+ }
+ 
+   // THIS CODE WORKS TO GET THE PRODUCT -- 
+   // multiply(avgCookiePerCustPike, RandomPike);
+
+  for (var i = 0; i < hoursArray.length; i++); {
+    multiply(avgCookiePerCustPike, RandomPike);
+ 
+  // multiply storeDetailsPike.avgCookiePerCustPerHourPike * RandomPike
+  // return the product of avgCookiePerCustPike * RandomPike as a new var
+//  multiply(storeDetailsPike.avgCookiePerCustPerHourPike, RandomPike);
+//  count(i);
+console.log('loop iteration: ' + (i+1));
+//  return avgCookiePerCustPerHourPike;
+}
+  //storeDetailsPike.avgCookiePerCustPike * RandomPike; 
+  
+// =============================================
 
 var storeDetailsSeaTac = {
   storeNumber: "2",
