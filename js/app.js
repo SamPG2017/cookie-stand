@@ -28,7 +28,12 @@ var store = new Store();
 var Pike = new Store('1', '1st and Pike', 23, 65, 6.3);
 
 */
-// Create the first object
+
+// TESTING THIS LINE
+console.log('TESTING THIS LINE AT 33');
+var testList = document.createElement('ul');
+
+// Figure out how to write this information to the // Create the first object
 var storeDetails = {
   storeNumber: "1",
   storeLocation: '1st and Pike',
@@ -80,7 +85,7 @@ console.log('LINE 56 -- Random Number for Pike (bt 22 & 65): ', typeof storeDeta
     
     // end of the for loop
   }
-  // This returns the filled array of random customers
+  // This returns the filled array of number of random customers
   return custPerHour;
 }
 // ===================================
@@ -126,10 +131,63 @@ function sumCookies(custPerHourArray, avgCookies) {
   // Push one more element into cookieArray at the end
   // Push the value of cumuTotal onto the array
   cookieArray.push(cumuTotal);
+
+  // // Everything is working to this point=====================================================
+// HTML page
+
+/* Working this out in Repl
+
+// MAKE THE LIST 
+var teamElement = document.createElement('li');
+teamElement.textContent = years[i] + ": " + this.champions[i];
+
+*/
+//var testElement = document.createElement('li');  // what is this information ?
+                                // this creates the list item
+                                // to be filled on the HTML page
+
+// Testing getting text on HTML
+
+
+//testElement.textContent = 'SEE THIS ?';       // what is this information ?
+// document.textContent('SEE THIS ?');       // what is this information ?
+// document.appendChild();       // this appends the information to
+                              // whatever came before
+//testElement.appendChild('ul');
+
+
+// MAKE THE TABLE
+
+
+// EVERYTHING WORKS TO THE END OF CURRENT CODE
+
   // get the array of numOfCookies and cumuTotal 
   // to come out
   return cookieArray;
 }
+
+var writeToPage = function () {
+var testElement = document.createElement('li');  // what is this information ?
+                                // this creates the list item
+                                // to be filled on the HTML page
+
+// Testing getting text on HTML
+
+testElement.textContent = 'SEE THIS ?';       // what is this information ?
+// document.textContent('SEE THIS ?');       // what is this information ?
+// document.appendChild();       // this appends the information to
+                              // whatever came before
+
+var testList = document.getElementById('testList');
+// var testList = document.getElementById('ul');  // THIS DOES NOT WORK
+// var testList = document.getElementById('pike');
+testList.appendChild(testElement);
+}
+
+for (var i = 0; i < 5; i++) {
+  writeToPage();
+}
+
    
 var testCustArray = custPerHourArray();
 // Set up a test with passed parameters to see if
@@ -145,6 +203,8 @@ console.log('testCustArray' + testCustArray);
 console.log('testCookieArray' + testCookieArray);
 
 // Everything is working to this point===========================================
+
+sumCookies
 
 // =============================================
 
