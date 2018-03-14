@@ -22,7 +22,8 @@ section ul li {
   text-align: left;
 }
 
-img {}
+img {
+  width: 500px;
 }
 
 /*
