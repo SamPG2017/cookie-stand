@@ -22,6 +22,10 @@ section ul li {
   text-align: left;
 }
 
+img {
+  width: 500px;
+}
+
 /*
 a: link {
   color: (rgb);

@@ -7,9 +7,6 @@
 
 // Create all object literals for five stores provided, using information provided along with names
 
-// var hoursArray = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
-// var hoursWorked = 16;
-
 // var of totalCookies should equal random number gen * avg cookies sales per cust per store
 
 // var totalCookies = 
@@ -31,7 +28,7 @@ var store = new Store();
 var Pike = new Store('1', '1st and Pike', 23, 65, 6.3);
 
 */
-
+// Create the first object
 var storeDetails = {
   storeNumber: "1",
   storeLocation: '1st and Pike',
@@ -41,54 +38,113 @@ var storeDetails = {
   avgCookiePerCust: 6.3,
   
   
-  // THIS IS THE PART THAT RETURNS A RANDOM NUMBER 
-  // BASED ON THE MIN/MAX PER STORE =============
-  // THIS FUNCTION NEEDS TO BE GENERATED THE NUMBER OF 
-  // TIMES THAT THERE ARE HOURS 
+  // Generate and return a random number 
+  // based on the min/max per store provided 
   getRandomIntInclusive: function () { 
-    return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour; //The maximum is inclusive and the minimum is inclusive 
+    return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
   }
-}
+};
 
+// this is the end of the first object
+
+// setting the variable of avgCookiePerCust outside 
+// the object
 var avgCookiePerCust = storeDetails.avgCookiePerCust; 
-console.log('avgCookiePerCust is: ', typeof avgCookiePerCust);
-//console.log('Store Details Pike: ', storeDetailsPike);
+// console.log('avgCookiePerCust is: ', typeof avgCookiePerCust);
+// console.log('  LINE 54 -- Store Details Pike: ', storeDetails);
 
-console.log('LINE 22 -- Random Number for Pike (bt 22 & 65): ', typeof storeDetails.getRandomIntInclusive());
+console.log('LINE 56 -- Random Number for Pike (bt 22 & 65): ', typeof storeDetails.getRandomIntInclusive());
 
-// THIS NEEDS TO BE SET UNDER THE FOR LOOP TO GENERATE
-// 16 DIFFERENT NUMBERS
+  // This function yields an array of how many
+  // customers per hour randomized using the
+  // numbers provided per store
 
-// WRAP THIS FUNCTION FOR ONE HOUR'S SALES INTO 
-// A FOR LOOP FOR SOME NUMBER OF HOURS
+  // Set up an array function to be filled below
+  function custPerHourArray () {
+    // Declare custPerHour as an empty array
+    var custPerHour = [];  
+    var numberOfHours = 15;   // number of hours stores are open
 
-var hoursPerDay = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-
-function multiply ( ) {
-  // I want the avgCookiePerCust * RandomPike
-
-   var product = (randomPike * storeDetails.avgCookiePerCust);
-   console.log(' LINE 39 -- Cookie Sales per hour: ', product);
-   return Math.round(product);
-    }
-
-  for (i = 0; i < hoursPerDay.length; i++) {
+  for ( var i = 0; i < numberOfHours; i++) {
   // do this thing
-  // multiply avgCookiePerCust * RandomPike the number 
-  // of times in the array of hours 
+  // Fills the empty array one element at a time to 
+  // the length of the var numberOfHours
 
-var randomPike = storeDetails.getRandomIntInclusive();
-console.log(typeof randomPike); 
-   // THIS CODE WORKS TO GET THE PRODUCT FOR ONE HOUR'S WORTH OF SALES -- 
-  multiply(avgCookiePerCust, randomPike);
+  // Declare randomPike = the method of getRandomIntInclusive up under Pike store
+  // when I used this. in the object
+    var randomPike = storeDetails.getRandomIntInclusive();
+    
+   // Add to custPerHour array above one number at a 
+   // time based on the for loop run 15 times
+    custPerHour.push(randomPike); 
+    
+    // end of the for loop
   }
-   
-  var newPike = document.createElement('li');
-  var newTextPike = document.createTextNode('Pike');
-  newPike.appendChild(newTextPike);
-  var position = document.getElementsByTagName('ul')[0];
-  position.appendChild(newPike);
+  // This returns the filled array of random customers
+  return custPerHour;
+}
+// ===================================
+// This is another function that generates the sum of
+// cookies per hour by using the custPerHourArray of
+// of random numbers from earlier and multiplying each
+// of those generated numbers by avgCookies to get
+// an array of cookies sold per hour 
 
+function sumCookies(custPerHourArray, avgCookies) {
+  // set cookieArray = an empty array to be filled
+  var cookieArray = [];
+  // set cumuTotal = initial value of 0
+  var cumuTotal = 0;
+  
+  // run this for loop inside the function to get
+  // the number of cookies sold per hour
+  for( var i = 0; i < custPerHourArray.length; i++) {
+  
+  // see if the iteration actually works each time
+  //  console.log('Loop counter: ' + i);
+  
+  // set numCookies = array[element] * avgCookies
+  // numCookies per iteration = random number * avgCookies
+    var numOfCookies = custPerHourArray[i] * avgCookies;
+    
+  // make numOfCookies a whole number  
+    numOfCookies = Math.round(numOfCookies);
+  
+  // Push each generated number into an array each
+  // time the for loop runs
+    cookieArray.push(numOfCookies);
+    
+  // Set a variable that started at 0 above, but
+  // adds the new value for numOfCookies to 
+  // cumuTotal every time the for loop runs
+    cumuTotal = cumuTotal + numOfCookies;
+    
+  // see if the addition to cumuTotal works every time
+  // and it works
+    console.log('cumuTotal: ' + cumuTotal);
+  }
+  // Push one more element into cookieArray at the end
+  // Push the value of cumuTotal onto the array
+  cookieArray.push(cumuTotal);
+  // get the array of numOfCookies and cumuTotal 
+  // to come out
+  return cookieArray;
+}
+   
+var testCustArray = custPerHourArray();
+// Set up a test with passed parameters to see if
+// the function sumCookies works
+// Passed in random numbers of cust/hour in array 
+// and avgCookiePerCust for Pike to test
+// and it works
+var testCookieArray = sumCookies(custPerHourArray(),       storeDetails.avgCookiePerCust);
+
+// Checking to see if everything works
+// and it seems to
+console.log('testCustArray' + testCustArray);
+console.log('testCookieArray' + testCookieArray);
+
+// Everything is working to this point===========================================
 
 // =============================================
 
