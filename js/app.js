@@ -143,12 +143,14 @@ function sumCookies(custPerHourArray, avgCookies) {
 // THE COOKIE VALUES
 ////////////////////////////////////
 
-  var writeToPage = function () {
+  var writeToPage = function (numOfCookies) {
     // this creates the list item to be filled on the HTML page
     var writeNumOfCookies = document.createElement('li');  // what is this information ?
     
     // Testing getting text on HTML
-    writeNumOfCookies.textContent = (numOfCookies);       // what is this information ?
+    writeNumOfCookies.textContent = (numOfCookies);       
+    // writeNumOfCookies.textContent = (cookieArray[i]);       // what is this information ?
+
     // document.textContent('SEE THIS ?');       // what is this information ?
         
     var testPike = document.getElementById('pike');
@@ -159,7 +161,7 @@ function sumCookies(custPerHourArray, avgCookies) {
     }
     // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
     for (var i = 0; i < custPerHourArray.length; i++) {
-      writeToPage();
+      writeToPage(cookieArray[i]);
     }
 
 
@@ -208,12 +210,11 @@ var testList = document.createElement('ul');
 var storeDetailsSeaTac = {
   storeNumber: "2",
   storeLocation: 'SeaTac Airport',
-  hours: 16;
+  hours: 16,
   minCustPerHourSeaTac: 3,
   maxCustPerHourSeaTac: 24,
   avgCookiePerCustSeaTac: 1.2,
-  
-  
+    
   // Generate and return a random number 
   // based on the min/max per store provided 
   getRandomIntInclusive: function () { 
@@ -314,15 +315,15 @@ function sumCookies(custPerHourArray, avgCookies) {
 // THE COOKIE VALUES
 ////////////////////////////////////
 
-  var writeToPage = function () {
+  var writeToPage = function (writeCookieNum) {
     // this creates the list item to be filled on the HTML page
     var writeNumOfCookies = document.createElement('li');  // what is this information ?
     
     // Testing getting text on HTML
-    writeNumOfCookies.textContent = (numOfCookies);       // what is this information ?
+    writeNumOfCookies.textContent = (writeCookieNum);       // what is this information ?
     // document.textContent('SEE THIS ?');       // what is this information ?
         
-    var testPike = document.getElementById('pike');
+    var testPike = document.getElementById('seaTac');
     
     // document.appendChild();       // this appends the information to
                                      // whatever element comes before
@@ -330,7 +331,7 @@ function sumCookies(custPerHourArray, avgCookies) {
     }
     // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
     for (var i = 0; i < custPerHourArray.length; i++) {
-      writeToPage();
+      writeToPage(cookieArray[i]);
     }
 
 
