@@ -18,12 +18,12 @@ h2 {
   /* font-family: 'Permanent Marker', cursive, serif; */
 };
 
-section ul li {
-  text-align: left;
+div ul li {
+  text-align: center;
 }
 
 img {
-  width: 500px;
+  width: 100px;
 }
 
 /*
