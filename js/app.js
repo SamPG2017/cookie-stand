@@ -1,21 +1,17 @@
 "use strict";
 
-
 // testing whether the html page sees this particular file
 // alert ('hey, do you see this ?'); // test passed
 
-
-// Create all object literals for five stores provided, using information provided along with names
+// Create object constructor for five stores provided, using information provided along with names
 
 // var of totalCookies should equal random number gen * avg cookies sales per cust per store
 
 // var totalCookies = 
 
-/*
-var store = new Store();
-  this.storeNumber = storeNumber;
+
+function Store(storeLocation, minCustPerHour, maxCustPerHour, avgCookiePerCust); {
   this.storeLocation = storeLoc;
-  this.hoursWorked = 16;
   this.minCustPerHour = minCustPerHour;
   this.maxCustPerHour = maxCustPerHour;
   this.avgCookiePerCust = avgCookiePerCust;
@@ -25,12 +21,14 @@ var store = new Store();
   }
 }
 
-var Pike = new Store('1', '1st and Pike', 23, 65, 6.3);
+var Pike = new Store('1st and Pike', 23, 65, 6.3);
+var SeaTac = new Store('SeaTac Airport', 3, 24, 1.2)
+var SeaCtr = new Store('Seattle Center', 11, 38, 3.7)
+var CapHill = new Store('Capitol Hill', 20, 38, 2.3)
+var Alki = new Store('Alki', 2, 16, 4.6)
 
-*/
+/*
 
-// TESTING THIS LINE
-console.log('TESTING THIS LINE AT 33');
 var testList = document.createElement('ul');
 
 // Figure out how to write this information to the // Create the first object
@@ -143,26 +141,24 @@ function sumCookies(custPerHourArray, avgCookies) {
 // THE COOKIE VALUES
 ////////////////////////////////////
 
-  var writeToPage = function (numOfCookies) {
-    // this creates the list item to be filled on the HTML page
-    var writeNumOfCookies = document.createElement('li');  // what is this information ?
-    
-    // Testing getting text on HTML
-    writeNumOfCookies.textContent = (numOfCookies);       
-    // writeNumOfCookies.textContent = (cookieArray[i]);       // what is this information ?
-
-    // document.textContent('SEE THIS ?');       // what is this information ?
-        
-    var testPike = document.getElementById('pike');
-    
-    // document.appendChild();       // this appends the information to
-                                     // whatever element comes before
-    testPike.appendChild(writeNumOfCookies);
-    }
-    // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
-    for (var i = 0; i < custPerHourArray.length; i++) {
-      writeToPage(cookieArray[i]);
-    }
+var writeToPage = function (writeCookieNum) {
+  // this creates the list item to be filled on the HTML page
+  var writeNumOfCookies = document.createElement('li');  // what is this information ?
+  
+  // Testing getting text on HTML
+  writeNumOfCookies.textContent = (writeCookieNum);       // what is this information ?
+  // document.textContent('SEE THIS ?');       // what is this information ?
+      
+  var testPike = document.getElementById('pike');
+  
+  // document.appendChild();       // this appends the information to
+                                   // whatever element comes before
+  testPike.appendChild(writeNumOfCookies);
+  }
+  // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
+  for (var i = 0; i < cookieArray.length; i++) {
+    writeToPage(cookieArray[i]);
+  }
 
 
 // MAKE THE TABLE
@@ -230,7 +226,7 @@ var avgCookiePerCust = storeDetails.avgCookiePerCust;
 // console.log('avgCookiePerCust is: ', typeof avgCookiePerCust);
 // console.log('  LINE 54 -- Store Details Pike: ', storeDetails);
 
-console.log('LINE 56 -- Random Number for Pike (bt 22 & 65): ', typeof storeDetails.getRandomIntInclusive());
+console.log('LINE 231 -- Random Number for SeaTac (bt 22 & 65): ', typeof storeDetails.getRandomIntInclusive());
 
   // This function yields an array of how many
   // customers per hour randomized using the
@@ -323,14 +319,14 @@ function sumCookies(custPerHourArray, avgCookies) {
     writeNumOfCookies.textContent = (writeCookieNum);       // what is this information ?
     // document.textContent('SEE THIS ?');       // what is this information ?
         
-    var testPike = document.getElementById('seaTac');
+    var testSeaTac = document.getElementById('seaTac');
     
     // document.appendChild();       // this appends the information to
                                      // whatever element comes before
-    testPike.appendChild(writeNumOfCookies);
+    testSeaTac.appendChild(writeNumOfCookies);
     }
     // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
-    for (var i = 0; i < custPerHourArray.length; i++) {
+    for (var i = 0; i < cookieArray.length; i++) {
       writeToPage(cookieArray[i]);
     }
 
@@ -369,64 +365,3 @@ sumCookies                   // SeaTac
 
 // =============================================
 
-
-
-
-
-
-
-
-var storeDetailsSeaCtr = {
-  storeNumber: '3',
-  storeLocation: 'Seattle Center',
-  minCustPerHourSeaCtr: 11,
-  maxCustPerHourSeaCtr: 38,
-  avgCookiePerCustSeaCtr: 3.7, 
-  
-   getRandomIntInclusive: function () { 
-    return Math.floor(Math.random() * (this.maxCustPerHourSeaCtr - this.minCustPerHourSeaCtr + 1)) + this.minCustPerHourSeaCtr; //The maximum is inclusive and the minimum is inclusive 
-  }
-}
-//console.log('Store Details SeaCtr: ', storeDetailsSeaCtr);
-console.log('RandomSeaCtr: ', storeDetailsSeaTac.getRandomIntInclusive());
-
-var storeDetailsCapHill = {
-  storeNumber: '4',
-  storeLocation: 'Capitol Hill',
-  minCustPerHourCapHill: 20,
-  maxCustPerHourCapHill: 38,
-  avgCookiePerCustCapHill: 2.3,
-  
-  getRandomIntInclusive: function () { 
-    return Math.floor(Math.random() * (this.maxCustPerHourSeaCtr - this.minCustPerHourSeaCtr + 1)) + this.minCustPerHourSeaCtr; //The maximum is inclusive and the minimum is inclusive 
-  }
-}
-//console.log('Store Details CapHill: ', storeDetailsCapHill);
-console.log('RandomCapHill: ', storeDetailsSeaTac.getRandomIntInclusive());
-
-
-var storeDetailsAlki = {
-  storeNumber: '5',
-  storeLocation: 'Alki',
-  minCustPerHour: 2,
-  maxCustPerHour: 16,
-  avgCookiePerCust: 4.6,
-  
-  getRandomIntInclusive: function () { 
-    return Math.floor(Math.random() * (this.maxCustPerHourSeaCtr - this.minCustPerHourSeaCtr + 1)) + this.minCustPerHourSeaCtr; //The maximum is inclusive and the minimum is inclusive 
-  }
-}
-// console.log('Store Details Alki: ', storeDetailsAlki);
-console.log('RandomAlki: ', storeDetailsSeaTac.getRandomIntInclusive());
-
-
- // calculateRandom: function () {
-//    return this.Math.floor(Math.random() * (storeDetailsAlki.maxCustPerHour //- storeDetailAlki.minCustPerHour + 1)) + storeDetailAlki.minCustPerHour;
-//}
-
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
-}
-getRandomIntInclusive(2,16);
