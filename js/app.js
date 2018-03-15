@@ -5,12 +5,13 @@
 
 // Create object constructor for five stores provided, using information provided along with names
 
-function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, divHTML) {
+function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, id) {
   this.storeLocation = storeLoc;
   this.minCustPerHour = minCustPerHour;
   this.maxCustPerHour = maxCustPerHour;
   this.avgCookiePerCust = avgCookiePerCust;
-  this.div             = divHTML;
+  this.elementId        = id;
+
   this.generateRandomSalesPerHour = function() {
     return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
   }
@@ -54,32 +55,31 @@ function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, divHT
     return cookieArray;
   }
 
+  //create array of labels to use with cookie data
+  this.createLabelArray = function() {
+    var labelArray = [ '6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm: ', 'Total: ']
+
+    return labelArray;
+  }
+
   this.writeToPage = function () {
     // this creates the list item to be filled on the HTML page
     var sumCookieArray = this.sumCookies();
-    var writeNumOfCookies = document.createElement('li');  // what is this information ?
-  
-    // Testing getting text on HTML
-    //writeNumOfCookies.textContent = (writeCookieNum);       // what is this information ?
-    // document.textContent('SEE THIS ?');       // what is this information ?
-        
-    //var testPike = document.getElementById('pike');
-    
-    // document.appendChild();       // this appends the information to
-                                     // whatever element comes before
-    //testPike.appendChild(writeNumOfCookies);
-    
+    //this gets the array of labels to use on the HTML page
+    var labelsArray = this.createLabelArray();
+    //var writeNumOfCookies = document.createElement('li');  // what is this information ?
+      
     // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
     for (var i = 0; i < sumCookieArray.length; i++) {
       //writeToPage(sumCookieArray[i]);
       var writeNumOfCookies = document.createElement('li');  // what is this information ?
   
-      // Testing getting text on HTML
-      writeNumOfCookies.textContent = (sumCookieArray[i]);       // what is this information ?
+      // write element text for HTML - label + number of cookies
+      writeNumOfCookies.textContent = (labelsArray[i] + sumCookieArray[i] + ' cookies');       // what is this information ?
       // document.textContent('SEE THIS ?');       // what is this information ?
         
-      var testPike = document.getElementById("pike");
-      testPike.appendChild(writeNumOfCookies);
+      var elem = document.getElementById(this.elementId);
+      elem.appendChild(writeNumOfCookies);
     }
   }
 }
@@ -90,11 +90,12 @@ pike.writeToPage();
 var seatac = new Store('SeaTac Airport', 3, 24, 1.2, 'seatac')
 seatac.writeToPage();
 
-var SeaCtr = new Store('Seattle Center', 11, 38, 3.7, 'seactr')
-var CapHill = new Store('Capitol Hill', 20, 38, 2.3, 'caphill')
-var Alki = new Store('Alki', 2, 16, 4.6, 'alki')
+var seactr = new Store('Seattle Center', 11, 38, 3.7, 'seactr')
+seactr.writeToPage();
 
-var testList = document.createElement('ul');
+var caphill = new Store('Capitol Hill', 20, 38, 2.3, 'caphill')
+caphill.writeToPage();
 
-
+var alki = new Store('Alki', 2, 16, 4.6, 'alki')
+alki.writeToPage();
 
