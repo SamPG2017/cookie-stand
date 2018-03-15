@@ -72,11 +72,10 @@ function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, id) {
     // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
     for (var i = 0; i < sumCookieArray.length; i++) {
       //writeToPage(sumCookieArray[i]);
-      var writeNumOfCookies = document.createElement('li');  // what is this information ?
+      var writeNumOfCookies = document.createElement('td');  // what is this information ?
   
       // write element text for HTML - label + number of cookies
       writeNumOfCookies.textContent = (labelsArray[i] + sumCookieArray[i] + ' cookies');       // what is this information ?
-      // document.textContent('SEE THIS ?');       // what is this information ?
         
       var elem = document.getElementById(this.elementId);
       elem.appendChild(writeNumOfCookies);
