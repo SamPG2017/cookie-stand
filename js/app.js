@@ -1,100 +1,111 @@
 "use strict";
 
-// testing whether the html page sees this particular file
-// alert ('hey, do you see this ?'); // test passed
+// GLOBAL VARIABLE DECLARATION
+var storeHours = [ '6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm: ', 'Total: '];
+var storeArray = [];
+var cookieArray = [];
+//var customersPerHour = Store.prototype.custPerHourArray();
+var customersPerHour = [];
+var cumuTotal = 0;
+var cookieData = [];
+var cookieSalesTable = document.getElementById('cookieSalesTable');
 
-// Create object constructor for five stores provided, using information provided along with names
 
-function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, id) {
-  this.storeLocation = storeLoc;
+function Store(storeLocation, minCustPerHour, maxCustPerHour, avgCookiePerCust) {
+  this.storeLocation = storeLocation;
   this.minCustPerHour = minCustPerHour;
   this.maxCustPerHour = maxCustPerHour;
   this.avgCookiePerCust = avgCookiePerCust;
-  this.elementId        = id;
+  this.custPerHour = [];                      // array of random numbers
+  storeArray.push(this);                             // pushes random #s to store array
+}
+ 
+// FIRST FUNCTION -- MAKES THE RANDOM NUMBER ARRAY 
+  Store.prototype.generateRandomSalesPerHour = function() {
 
-  this.generateRandomSalesPerHour = function() {
-    return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
+    var random = Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
+
+          for ( var i = 0; i < storeHours.length; i++) {
+          this.custPerHour.push(random); 
+        }                                               // END FOR LOOP
+      // This returns the filled array of number of random customers
+    return this.custPerHour;
+      // END FIRST FUNCTION
   }
-
-  // THIS IS THE FUNCTION THAT MAKES THE ARRAY 
-  this.custPerHourArray = function() {
-    // Declare custPerHour as an empty array
-    var custPerHour = [];  
-    var numberOfHours = 15;   // number of hours stores are open
-
-    for ( var i = 0; i < numberOfHours; i++) {
-      var random = this.generateRandomSalesPerHour();
-    
-   // Add to custPerHour array above one number at a 
-   // time based on the for loop run 15 times
-      custPerHour.push(random); 
-    
-    // end of the for loop
-    }
-  // This returns the filled array of number of random customers
-  return custPerHour;
-    // END OF THE FIRST FUNCTION
-  }
-
-  this.sumCookies = function () {
-    // set cookieArray = an empty array to be filled
-    var cookieArray = [];
-    // create variable that stores the custPerHourArray
-    var customersPerHour = this.custPerHourArray();
-    var cumuTotal = 0;
-    
+ 
+    // SECOND FUNCTION - CREATES COOKIES/PER/HOUR/ARRAY
+    Store.prototype.sumCookies = function () {
+    var customersPerHour = this.generateRandomSalesPerHour();
     for( var i = 0; i < customersPerHour.length; i++) {
-      var numOfCookies = customersPerHour[i] * this.avgCookiePerCust;
+      var numOfCookies = this.customersPerHour[i] * this.avgCookiePerCust;
       numOfCookies = Math.round(numOfCookies);
       cookieArray.push(numOfCookies);
+      console.log(cookieArray);
       cumuTotal = cumuTotal + numOfCookies;
-      
-    }
-    cookieArray.push(cumuTotal);
+
+    }   // END FOR LOOP
+
+    cookieArray.push(cumuTotal);     // RUNS THE cookieArray FUNCTION
 
     return cookieArray;
-  }
+  }                                  // END SECOND FUNCTION
 
-  //create array of labels to use with cookie data
-  this.createLabelArray = function() {
-    var labelArray = [ '6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm: ', 'Total: ']
+  //  create array of labels to use with cookie data
+    this.createLabelArray = function() {
 
     return labelArray;
-  }
+  }                                  // END createLabelArray FUNCTION
 
-  this.writeToPage = function () {
-    // this creates the list item to be filled on the HTML page
-    var sumCookieArray = this.sumCookies();
-    //this gets the array of labels to use on the HTML page
-    var labelsArray = this.createLabelArray();
-    //var writeNumOfCookies = document.createElement('li');  // what is this information ?
+//  CREATE TABLE USING RENDER METHOD
+    //  var dogTable = document.getElementById('dogs');
+
+
+    // CREATE VARIABLES AS ARGUMENTS TO PASS IN TO OBJECTS
+    var pike = new Store('1st and Pike', 23, 65, 6.3);
+    var seatac = new Store('SeaTac Airport', 3, 24, 1.2);
+    var seactr = new Store('Seattle Center', 11, 38, 3.7);
+    var caphill = new Store('Capitol Hill', 20, 38, 2.3);
+    var alki = new Store('Alki', 2, 16, 4.6);
+    console.log(storeArray);
+
+
+
+    Store.prototype.render = function () {
+      var trElement = document.createElement('tr');
+      var tdElement = document.createElement('td');
+
+      // give td content (Store Loc) eventually do it in a for loop
+      tdElement.textContent = this.storeLocation;           
+      trElement.appendChild(tdElement);
+
+      // make another td for the avg cookies property
+      tdElement = document.createElement('td');
+      tdElement.textContent = this.sumCookies();
+      //  tdElement.textContent = this.avgCookiePerCust;
+      trElement.appendChild(tdElement);
       
-    // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
-    for (var i = 0; i < sumCookieArray.length; i++) {
-      //writeToPage(sumCookieArray[i]);
-      var writeNumOfCookies = document.createElement('td');  // what is this information ?
-  
-      // write element text for HTML - label + number of cookies
-      writeNumOfCookies.textContent = (labelsArray[i] + sumCookieArray[i] + ' cookies');       // what is this information ?
-        
-      var elem = document.getElementById(this.elementId);
-      elem.appendChild(writeNumOfCookies);
-    }
-  }
-}
+      // append tr to table
+      cookieSalesTable.appendChild(trElement);
+      };                            // END OF RENDER FUNCTION FOR STORES
 
-var pike = new Store('1st and Pike', 23, 65, 6.3, 'pike');
-pike.writeToPage();
+      function makeHeaderRow() {
 
-var seatac = new Store('SeaTac Airport', 3, 24, 1.2, 'seatac')
-seatac.writeToPage();
+      var headerTrElement = document.createElement('tr');
+      var thElement = document.createElement('th');
 
-var seactr = new Store('Seattle Center', 11, 38, 3.7, 'seactr')
-seactr.writeToPage();
+      thElement.textContent = 'Store Location';
+      headerTrElement.appendChild(thElement);
 
-var caphill = new Store('Capitol Hill', 20, 38, 2.3, 'caphill')
-caphill.writeToPage();
+      cookieSalesTable.appendChild(headerTrElement);
+      };                           // END OF MAKEHEADERROW FUNCTION 
 
-var alki = new Store('Alki', 2, 16, 4.6, 'alki')
-alki.writeToPage();
 
+    // CALL FUNCTIONS FOR HEADER & STORE ROWS
+
+
+    makeHeaderRow();
+    pike.render();
+    seatac.render();
+    seactr.render();
+    caphill.render();
+    alki.render();
