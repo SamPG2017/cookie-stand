@@ -1,0 +1,195 @@
+"use strict";
+
+// testing whether the html page sees this particular file
+// alert ('hey, do you see this ?'); // test passed
+
+// CREATE OBJECT CONSTRUCTOR
+// ADD FUNCTIONS TO OBJECT CONSTRUCTOR TO MAKE NUMBERS
+
+function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, id) {
+  this.storeLocation = storeLoc;
+  this.minCustPerHour = minCustPerHour;
+  this.maxCustPerHour = maxCustPerHour;
+  this.avgCookiePerCust = avgCookiePerCust;
+  this.elementId        = id;
+
+  this.generateRandomSalesPerHour = function() {
+    return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
+  }
+
+  // THIS IS THE FUNCTION THAT MAKES THE ARRAY 
+  this.custPerHourArray = function() {
+    // Declare custPerHour as an empty array
+    var custPerHour = [];  
+    var numberOfHours = 15;   // number of hours stores are open
+
+    for ( var i = 0; i < numberOfHours; i++) {
+      var random = this.generateRandomSalesPerHour();
+    
+   // Add to custPerHour array above one number at a 
+   // time based on the for loop run 15 times
+      custPerHour.push(random); 
+    
+    // end of the for loop
+    }
+  // This returns the filled array of number of random customers
+  return custPerHour;
+  }
+    // END OF THE FIRST FUNCTION
+
+
+    // SECOND FUNCTION - CREATES COOKIES/PER/HOUR/ARRAY
+    // USING A FOR LOOP
+  this.sumCookies = function () {
+    // set cookieArray = an empty array to be filled
+    var cookieArray = [];
+    // create variable that stores the custPerHourArray
+    var customersPerHour = this.custPerHourArray();
+    var cumuTotal = 0;
+    
+    for( var i = 0; i < customersPerHour.length; i++) {
+      var numOfCookies = customersPerHour[i] * this.avgCookiePerCust;
+      //  ROUNDS numOfCookies TO A WHOLE NUMBER
+      numOfCookies = Math.round(numOfCookies);
+
+      // PUSHES THIS NUMBER INTO cookieArray
+      cookieArray.push(numOfCookies);
+
+      // ADDS numOfCookies TO cumuTotal EACH 
+      // TIME THROUGH THE FOR LOOP
+
+      cumuTotal = cumuTotal + numOfCookies;
+      
+    }
+    // RUNS THE cookieArray FUNCTION 
+    cookieArray.push(cumuTotal);
+
+    return cookieArray;
+  }
+
+  //create array of labels to use with cookie data
+  this.createLabelArray = function() {
+    var labelArray = [ '6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm: ', 'Total: ']
+
+    return labelArray;
+  }
+
+  // use render method to make table
+  
+
+  // COMMENTING THIS OUT TO TEST RENDER FUNCTION 
+  /*
+  this.writeToPage = function () {
+    // this creates the list item to be filled on the web page
+    var sumCookieArray = this.sumCookies();
+
+    //this creates the array of labels to use on the web page
+    var labelsArray = this.createLabelArray();
+      
+    // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
+    for (var i = 0; i < sumCookieArray.length; i++) {
+      var writeNumOfCookies = document.createElement('td');  // what is this information ?
+  
+      // write element text for webpage - label + number of cookies
+      writeNumOfCookies.textContent = (labelsArray[i] + sumCookieArray[i]);       // what is this information ?
+        
+      var elem = document.getElementById(this.elementId);
+      elem.appendChild(writeNumOfCookies);
+    }
+  }
+  */
+}
+
+//  CREATE TABLE 
+    // We need an array to hold our cookie data
+    var cookieData = [];
+    
+    // We need to access the table that is in the DOM
+    var cookieSalesTable = document.getElementById('cookieSalesTable');
+
+    // We need a constructor to make our store objects
+
+    function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, id) {
+      this.storeLocation = storeLoc;
+      this.minCustPerHour = minCustPerHour;
+      this.maxCustPerHour = maxCustPerHour;
+      this.avgCookiePerCust = avgCookiePerCust;
+      this.elementId        = id;
+    }
+
+// Let's refactor so that render() method is on the constructor's prototype; this will tidy up the way things look on the screen
+
+// for(var i=0; i < this.numOfCookies.length; i++) {
+
+Store.prototype.render = function () {
+  // create tr
+  var trElement = document.createElement('tr');
+  // create td
+  var tdElement = document.createElement('td');
+  // give td content (Store Loc, cookie numbers) eventually do it in a for loop
+  tdElement.textContent = this.storeLocation;
+  // append td to tr
+  trElement.appendChild(tdElement);
+
+  // make another td for the color property
+  tdElement = document.createElement('td');
+  tdElement.textContent = this.avgCookiePerCust;
+  trElement.appendChild(tdElement);
+    
+  // append tr to table
+  cookieSalesTable.appendChild(trElement);
+}
+
+// CREATE VARIABLES AS ARGUMENTS TO PASS IN TO CREATE OBJECTS
+
+var pike = new Store('1st and Pike', 23, 65, 6.3, 'pike');
+//pike.writeToPage();
+
+var seatac = new Store('SeaTac Airport', 3, 24, 1.2, 'seatac')
+//seatac.writeToPage();
+
+var seactr = new Store('Seattle Center', 11, 38, 3.7, 'seactr')
+//seactr.writeToPage();
+
+var caphill = new Store('Capitol Hill', 20, 38, 2.3, 'caphill')
+//caphill.writeToPage();
+
+var alki = new Store('Alki', 2, 16, 4.6, 'alki')
+//alki.writeToPage();
+
+function makeHeaderRow() {
+  var headerTrElement = document.createElement('tr');
+  var thElement = document.createElement('th');
+  thElement.textContent = 'Store Location';
+  headerTrElement.appendChild(thElement);
+
+  cookieSalesTable.appendChild(headerTrElement);
+}
+
+// Now we need to call our functions: the one for the header row, and the one for generating the individual dog rows
+makeHeaderRow();
+pike.render();
+seatac.render();
+seactr.render();
+caphill.render();
+alki.render();
+
+/*
+var theTable = document.getElementById('table')
+var jellybean = cdocument.getElementById('jellybean')
+var jellybean = cdocument.getElementById('excel')
+var jellybean = cdocument.getElementById('modern')
+
+
+jellybean.addEventListener('click', changeTableClass);
+excel.addEventListener('click', changeTableClass);
+modern.addEventListener('click', changeTableClass);
+
+function changeTableClass(event) {
+  alert('OWIE');
+  var newClassName = event.target.id;
+  theTable.className = '');
+  console.log(newClassName);
+
+  
+*/

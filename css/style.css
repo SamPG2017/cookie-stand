@@ -4,18 +4,19 @@
 body {
   background-color: rgb(199, 120, 56);
   color: rgb(66, 63, 58);
-  text-align: center;
 };
 
 h1 {
-  /* font-family: 'Permanent Marker', cursive, serif; */
+  font-family: 'Permanent Marker', cursive, serif; 
   font-size: 48px;
   text-shadow: 2px 2px 7px rgb(39, 39, 36);
+  text-align: center;
 };
 
 h2 {
   color: wheat;
   /* font-family: 'Permanent Marker', cursive, serif; */
+  text-align: center;
 };
 
 div ul li {
@@ -26,7 +27,60 @@ img {
   width: 100px;
 }
 
+/*table.name tr:first-child {
+  background: #ccc;
+}
+*/
+
+table.name td {
+  border: 1px solid #ccc
+}
+
 /*
+table.name tr:nth-child(odd) {
+  background: grey;
+}
+*/
+
+table tr {
+  background:  rgb(39, 39, 36);
+    /*border: 2 px solid rgb(66, 63, 58);  */
+  border: 1px solid black;
+  border-radius: 15px; 
+  padding: .25em .75em;
+  width: 80%;
+}
+
+table tr td {
+  background:  wheat;
+  border: 1px solid black;
+  border-radius: 15px; 
+  padding: .25em .75em;
+  width: 80%;
+}
+
+table tr td :hover {
+  color: rgb(244, 244, 248);
+  background: rgb(32, 32, 32);
+}
+
+body nav p id="More Info" {
+  width: 50;
+  padding: 10em 30em;
+  margin: 10em 30em;
+}
+
+/*
+
+li {
+  list-style-type: disc;
+}
+
+li li {
+  list-style-type: circle;
+}
+
+
 a: link {
   color: (rgb);
   text-decoration: none;}
