@@ -1,18 +1,5 @@
 "use strict";
 
-// GLOBAL VARIABLE DECLARATION
-var storeHours = [ '6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm: ', 'Total: '];
-var storeArray = [];
-//var cookieArray = [];
-//var customersPerHour = Store.prototype.custPerHourArray();
-//var customersPerHour = [];
-//var cumuTotal = 0;
-//var cookieData = [];
-var cookieSalesTable = document.getElementById('cookieSalesTable');
-
-
-function Store(storeLocation, minCustPerHour, maxCustPerHour, avgCookiePerCust) {
-  this.storeLocation = storeLocation;
   this.minCustPerHour = minCustPerHour;
   this.maxCustPerHour = maxCustPerHour;
   this.avgCookiePerCust = avgCookiePerCust;
@@ -54,32 +41,7 @@ function Store(storeLocation, minCustPerHour, maxCustPerHour, avgCookiePerCust) 
 
     this.cookieArray.push(cumuTotal);           // push total onto end of array
 
-    //return this.cookieArray;
-  }                                             // END SECOND FUNCTION
 
-
-
-
-
-function makeHeaderRow() {
-    
-    var headerTrElement = document.createElement('tr');
-    var thElement = document.createElement('th');
-
-    thElement.textContent = 'Store Location';         
-    headerTrElement.appendChild(thElement);                   // Current line being tested 3
-
-    thElement = document.createElement('th');
-    thElement.textContent = storeHours;
-    headerTrElement.appendChild(thElement);
-
-/*
-      for (var i = 0; i < storeHours.length; i++) {
-      thElement = document.createElement('th');
-      thElement.textContent = storeHours;
-      headerTrElement.appendChild(thElement);
-*/
-      cookieSalesTable.appendChild(headerTrElement);
   }
 
   /*
@@ -131,7 +93,7 @@ function makeHeaderRow() {
     cookieSalesTable.appendChild(trElement);
   };  // END OF RENDER FUNCTION FOR STORES
 
-  
+
 
 
   //  create array of labels to use with cookie data
