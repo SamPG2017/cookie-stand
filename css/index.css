@@ -7,7 +7,7 @@ body {
 };
 
 div h1 {
-  font-family: 'Permanent Marker', cursive, serif;
+  font-family: 'Permanent Marker', cursive, serif; 
   font-size: 48px;
   text-shadow: 2px 2px 7px rgb(39, 39, 36);
   text-align: center;
@@ -76,4 +76,3 @@ div #numbox {
   margin: 1em; 
 /*   padding: 1em;   */
 }
-
