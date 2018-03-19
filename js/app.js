@@ -1,10 +1,10 @@
 "use strict";
-
+debugger;
 // testing whether the html page sees this particular file
 // alert ('hey, do you see this ?'); // test passed
 
 // Create object constructor for five stores provided, using information provided along with names
-
+debugger;
 function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, id) {
   this.storeLocation = storeLoc;
   this.minCustPerHour = minCustPerHour;
@@ -22,15 +22,16 @@ function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, id) {
     var custPerHour = [];  
     var numberOfHours = 15;   // number of hours stores are open
 
-    for ( var i = 0; i < numberOfHours; i++) {
-      var random = this.generateRandomSalesPerHour();
+      for ( var i = 0; i < numberOfHours; i++ ) {
+        var random = this.generateRandomSalesPerHour();
     
-   // Add to custPerHour array above one number at a 
-   // time based on the for loop run 15 times
-      custPerHour.push(random); 
+      // Add to custPerHour array above one number at a 
+      // time based on the for loop run 15 times
+       custPerHour.push(random); 
     
-    // end of the for loop
+      // end of the for loop
     }
+    console.log(custPerHour);
   // This returns the filled array of number of random customers
   return custPerHour;
     // END OF THE FIRST FUNCTION
@@ -62,25 +63,26 @@ function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, id) {
     return labelArray;
   }
 
+    // this creates the table items on the webpage
   this.writeToPage = function () {
-    // this creates the list item to be filled on the HTML page
-    var sumCookieArray = this.sumCookies();
     //this gets the array of labels to use on the HTML page
-    var labelsArray = this.createLabelArray();
+    var sumCookieArray = this.sumCookies();
     //var writeNumOfCookies = document.createElement('li');  // what is this information ?
+    var labelsArray = this.createLabelArray();
+
       
     // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
-    for (var i = 0; i < sumCookieArray.length; i++) {
-      //writeToPage(sumCookieArray[i]);
-      var writeNumOfCookies = document.createElement('td');  // what is this information ?
+          for (var i = 0; i < sumCookieArray.length; i++) {
+          //writeToPage(sumCookieArray[i]);
+          var writeNumOfCookies = document.createElement('td');  // what is this information ?
   
-      // write element text for HTML - label + number of cookies
-      writeNumOfCookies.textContent = (labelsArray[i] + sumCookieArray[i] + ' cookies');       // what is this information ?
-        
-      var elem = document.getElementById(this.elementId);
-      elem.appendChild(writeNumOfCookies);
+          // write element text for HTML - label + number of cookies
+          writeNumOfCookies.textContent = (labelsArray[i] + sumCookieArray[i] + ' cookies');       // what is this information ?
+     
+         var elem = document.getElementById(this.elementId);
+         elem.appendChild(writeNumOfCookies);
+        }
     }
-  }
 }
 
 var pike = new Store('1st and Pike', 23, 65, 6.3, 'pike');
