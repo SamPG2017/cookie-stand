@@ -1,152 +1,56 @@
 "use strict";
 
-
-// testing whether the html page sees this particular file
-// alert ('hey, do you see this ?'); // test passed
-
-
-// Create all object literals for five stores provided, using information provided along with names
-
-// var of totalCookies should equal random number gen * avg cookies sales per cust per store
-
-// var totalCookies = 
-
-/*
-var store = new Store();
-  this.storeNumber = storeNumber;
-  this.storeLocation = storeLoc;
-  this.hoursWorked = 16;
-  this.minCustPerHour = minCustPerHour;
-  this.maxCustPerHour = maxCustPerHour;
-  this.avgCookiePerCust = avgCookiePerCust;
-
-  store.generateRandomSalesPerHour = function() {
-    return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
-  }
-}
-
-var Pike = new Store('1', '1st and Pike', 23, 65, 6.3);
-
-*/
-// Create the first object
 var storeDetails = {
   storeNumber: "1",
   storeLocation: '1st and Pike',
-  hours: 16, 
+  hours: 16,
   minCustPerHour: 23,
   maxCustPerHour: 65,
   avgCookiePerCust: 6.3,
-  
-  
-  // Generate and return a random number 
-  // based on the min/max per store provided 
-  getRandomIntInclusive: function () { 
+
+  getRandomIntInclusive: function () {
     return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
   }
 };
 
-// this is the end of the first object
+var avgCookiePerCust = storeDetails.avgCookiePerCust;
 
-// setting the variable of avgCookiePerCust outside 
-// the object
-var avgCookiePerCust = storeDetails.avgCookiePerCust; 
-// console.log('avgCookiePerCust is: ', typeof avgCookiePerCust);
-// console.log('  LINE 54 -- Store Details Pike: ', storeDetails);
+function custPerHourArray() {
 
-console.log('LINE 56 -- Random Number for Pike (bt 22 & 65): ', typeof storeDetails.getRandomIntInclusive());
+  var custPerHour = [];
+  var numberOfHours = 15;
 
-  // This function yields an array of how many
-  // customers per hour randomized using the
-  // numbers provided per store
-
-  // Set up an array function to be filled below
-  function custPerHourArray () {
-    // Declare custPerHour as an empty array
-    var custPerHour = [];  
-    var numberOfHours = 15;   // number of hours stores are open
-
-  for ( var i = 0; i < numberOfHours; i++) {
-  // do this thing
-  // Fills the empty array one element at a time to 
-  // the length of the var numberOfHours
-
-  // Declare randomPike = the method of getRandomIntInclusive up under Pike store
-  // when I used this. in the object
+  for (var i = 0; i < numberOfHours; i++) {
     var randomPike = storeDetails.getRandomIntInclusive();
-    
-   // Add to custPerHour array above one number at a 
-   // time based on the for loop run 15 times
-    custPerHour.push(randomPike); 
-    
-    // end of the for loop
+
+    custPerHour.push(randomPike);
   }
-  // This returns the filled array of random customers
+
   return custPerHour;
 }
-// ===================================
-// This is another function that generates the sum of
-// cookies per hour by using the custPerHourArray of
-// of random numbers from earlier and multiplying each
-// of those generated numbers by avgCookies to get
-// an array of cookies sold per hour 
 
 function sumCookies(custPerHourArray, avgCookies) {
-  // set cookieArray = an empty array to be filled
+
   var cookieArray = [];
-  // set cumuTotal = initial value of 0
   var cumuTotal = 0;
-  
-  // run this for loop inside the function to get
-  // the number of cookies sold per hour
-  for( var i = 0; i < custPerHourArray.length; i++) {
-  
-  // see if the iteration actually works each time
-  //  console.log('Loop counter: ' + i);
-  
-  // set numCookies = array[element] * avgCookies
-  // numCookies per iteration = random number * avgCookies
+
+  for (var i = 0; i < custPerHourArray.length; i++) {
+
     var numOfCookies = custPerHourArray[i] * avgCookies;
-    
-  // make numOfCookies a whole number  
     numOfCookies = Math.round(numOfCookies);
-  
-  // Push each generated number into an array each
-  // time the for loop runs
+
     cookieArray.push(numOfCookies);
-    
-  // Set a variable that started at 0 above, but
-  // adds the new value for numOfCookies to 
-  // cumuTotal every time the for loop runs
+
     cumuTotal = cumuTotal + numOfCookies;
-    
-  // see if the addition to cumuTotal works every time
-  // and it works
-    console.log('cumuTotal: ' + cumuTotal);
   }
-  // Push one more element into cookieArray at the end
-  // Push the value of cumuTotal onto the array
+
   cookieArray.push(cumuTotal);
-  // get the array of numOfCookies and cumuTotal 
-  // to come out
+
   return cookieArray;
 }
-   
+
 var testCustArray = custPerHourArray();
-// Set up a test with passed parameters to see if
-// the function sumCookies works
-// Passed in random numbers of cust/hour in array 
-// and avgCookiePerCust for Pike to test
-// and it works
-var testCookieArray = sumCookies(custPerHourArray(),       storeDetails.avgCookiePerCust);
-
-// Checking to see if everything works
-// and it seems to
-console.log('testCustArray' + testCustArray);
-console.log('testCookieArray' + testCookieArray);
-
-// Everything is working to this point===========================================
-
-// =============================================
+var testCookieArray = sumCookies(custPerHourArray(), storeDetails.avgCookiePerCust);
 
 var storeDetailsSeaTac = {
   storeNumber: "2",
@@ -155,26 +59,22 @@ var storeDetailsSeaTac = {
   maxCustPerHourSeaTac: 24,
   avgCookiePerCustSeaTac: 1.2,
 
-  getRandomIntInclusive: function () { 
-    return Math.floor(Math.random() * (this.maxCustPerHourSeaTac - this.minCustPerHourSeaTac + 1)) + this.minCustPerHourSeaTac; //The maximum is inclusive and the minimum is inclusive 
+  getRandomIntInclusive: function () {
+    return Math.floor(Math.random() * (this.maxCustPerHourSeaTac - this.minCustPerHourSeaTac + 1)) + this.minCustPerHourSeaTac;
   }
 }
-//console.log('Store Details SeaTac: ', storeDetailsSeaTac);
-console.log('RandomSeaTac: ', storeDetailsSeaTac.getRandomIntInclusive());
 
 var storeDetailsSeaCtr = {
   storeNumber: '3',
   storeLocation: 'Seattle Center',
   minCustPerHourSeaCtr: 11,
   maxCustPerHourSeaCtr: 38,
-  avgCookiePerCustSeaCtr: 3.7, 
-  
-   getRandomIntInclusive: function () { 
-    return Math.floor(Math.random() * (this.maxCustPerHourSeaCtr - this.minCustPerHourSeaCtr + 1)) + this.minCustPerHourSeaCtr; //The maximum is inclusive and the minimum is inclusive 
+  avgCookiePerCustSeaCtr: 3.7,
+
+  getRandomIntInclusive: function () {
+    return Math.floor(Math.random() * (this.maxCustPerHourSeaCtr - this.minCustPerHourSeaCtr + 1)) + this.minCustPerHourSeaCtr;
   }
 }
-//console.log('Store Details SeaCtr: ', storeDetailsSeaCtr);
-console.log('RandomSeaCtr: ', storeDetailsSeaTac.getRandomIntInclusive());
 
 var storeDetailsCapHill = {
   storeNumber: '4',
@@ -182,14 +82,11 @@ var storeDetailsCapHill = {
   minCustPerHourCapHill: 20,
   maxCustPerHourCapHill: 38,
   avgCookiePerCustCapHill: 2.3,
-  
-  getRandomIntInclusive: function () { 
-    return Math.floor(Math.random() * (this.maxCustPerHourSeaCtr - this.minCustPerHourSeaCtr + 1)) + this.minCustPerHourSeaCtr; //The maximum is inclusive and the minimum is inclusive 
+
+  getRandomIntInclusive: function () {
+    return Math.floor(Math.random() * (this.maxCustPerHourSeaCtr - this.minCustPerHourSeaCtr + 1)) + this.minCustPerHourSeaCtr;
   }
 }
-//console.log('Store Details CapHill: ', storeDetailsCapHill);
-console.log('RandomCapHill: ', storeDetailsSeaTac.getRandomIntInclusive());
-
 
 var storeDetailsAlki = {
   storeNumber: '5',
@@ -197,22 +94,43 @@ var storeDetailsAlki = {
   minCustPerHour: 2,
   maxCustPerHour: 16,
   avgCookiePerCust: 4.6,
-  
-  getRandomIntInclusive: function () { 
-    return Math.floor(Math.random() * (this.maxCustPerHourSeaCtr - this.minCustPerHourSeaCtr + 1)) + this.minCustPerHourSeaCtr; //The maximum is inclusive and the minimum is inclusive 
+
+  getRandomIntInclusive: function () {
+    return Math.floor(Math.random() * (this.maxCustPerHourSeaCtr - this.minCustPerHourSeaCtr + 1)) + this.minCustPerHourSeaCtr;
   }
 }
-// console.log('Store Details Alki: ', storeDetailsAlki);
-console.log('RandomAlki: ', storeDetailsSeaTac.getRandomIntInclusive());
-
-
- // calculateRandom: function () {
-//    return this.Math.floor(Math.random() * (storeDetailsAlki.maxCustPerHour //- storeDetailAlki.minCustPerHour + 1)) + storeDetailAlki.minCustPerHour;
-//}
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-getRandomIntInclusive(2,16);
+getRandomIntInclusive(2, 16);
+
+
+var listElement = document.getElementById('storelist');
+
+var ulElement = document.createElement('ul');
+
+var pikeElement = document.createElement('li');
+pikeElement.textContent = storeDetails.storeLocation;
+ulElement.appendChild(pikeElement);
+
+var seaTacElement = document.createElement('li');
+seaTacElement.textContent = storeDetailsSeaTac.storeLocation;
+ulElement.appendChild(seaTacElement);
+
+var seaCtrElement = document.createElement('li');
+seaCtrElement.textContent = storeDetailsSeaCtr.storeLocation;
+ulElement.appendChild(seaCtrElement);
+
+var capHillElement = document.createElement('li');
+capHillElement.textContent = storeDetailsCapHill.storeLocation;
+ulElement.appendChild(capHillElement);
+
+var alkiElement = document.createElement('li');
+alkiElement.textContent = storeDetailsAlki.storeLocation;
+ulElement.appendChild(alkiElement);
+
+listElement.appendChild(ulElement);
+

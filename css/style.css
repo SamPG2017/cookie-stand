@@ -18,29 +18,37 @@ h2 {
   /* font-family: 'Permanent Marker', cursive, serif; */
 };
 
-section ul li {
-  text-align: left;
-}
+section .storelist {
+  font-size: 18px;
+  }
 
 img {
   width: 500px;
 }
 
-/*
-a: link {
-  color: (rgb);
-  text-decoration: none;}
+
+nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(90, 90, 86);
 }
 
-a: visited {
-  color: red;
-  }
 
-a: hover {
-  color: (rgb);
-  text-decoration: underline;
+nav > ul > li {
+  float: left;
 }
 
-a: active {
-  color: brown;
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: rgb(64, 151, 110);
 }
