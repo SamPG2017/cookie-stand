@@ -1,100 +1,130 @@
 "use strict";
 
-// testing whether the html page sees this particular file
-// alert ('hey, do you see this ?'); // test passed
+var storeHours = ['6am ', '7am ', '8am ', '9am ', '10am ', '11am ', '12pm ', '1pm ', '2pm ', '3pm ', '4pm ', '5pm ', '6pm ', '7pm ', '8pm ', 'Total '];
 
-// Create object constructor for five stores provided, using information provided along with names
+var storeArray = [];
+
 
 function Store(storeLoc, minCustPerHour, maxCustPerHour, avgCookiePerCust, id) {
   this.storeLocation = storeLoc;
   this.minCustPerHour = minCustPerHour;
   this.maxCustPerHour = maxCustPerHour;
   this.avgCookiePerCust = avgCookiePerCust;
-  this.elementId        = id;
+  this.elementId = id;
+  this.cookieArray = [];
 
-  this.generateRandomSalesPerHour = function() {
+  storeArray.push(this);
+
+  this.generateRandomSalesPerHour = function () {
     return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
   }
 
-  // THIS IS THE FUNCTION THAT MAKES THE ARRAY 
-  this.custPerHourArray = function() {
-    // Declare custPerHour as an empty array
-    var custPerHour = [];  
-    var numberOfHours = 15;   // number of hours stores are open
+  // CREATE THE ARRAY FOR NUMBER OF RANDOM CUSTOMERS
+  this.custPerHourArray = function () {
 
-    for ( var i = 0; i < numberOfHours; i++) {
+    var custPerHour = [];
+    var numberOfHours = 15;
+
+    for (var i = 0; i < numberOfHours; i++) {
       var random = this.generateRandomSalesPerHour();
-    
-   // Add to custPerHour array above one number at a 
-   // time based on the for loop run 15 times
-      custPerHour.push(random); 
-    
-    // end of the for loop
+      custPerHour.push(random);
     }
-  // This returns the filled array of number of random customers
-  return custPerHour;
-    // END OF THE FIRST FUNCTION
+    return custPerHour;
   }
 
+  // CREATE THE ARRAY FOR NUMBER OF COOKIES PER HOUR
   this.sumCookies = function () {
-    // set cookieArray = an empty array to be filled
-    var cookieArray = [];
-    // create variable that stores the custPerHourArray
     var customersPerHour = this.custPerHourArray();
     var cumuTotal = 0;
-    
-    for( var i = 0; i < customersPerHour.length; i++) {
+
+    for (var i = 0; i < customersPerHour.length; i++) {
       var numOfCookies = customersPerHour[i] * this.avgCookiePerCust;
       numOfCookies = Math.round(numOfCookies);
-      cookieArray.push(numOfCookies);
+      this.cookieArray.push(numOfCookies);
       cumuTotal = cumuTotal + numOfCookies;
-      
     }
-    cookieArray.push(cumuTotal);
 
-    return cookieArray;
-  }
-
-  //create array of labels to use with cookie data
-  this.createLabelArray = function() {
-    var labelArray = [ '6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm: ', 'Total: ']
-
-    return labelArray;
-  }
-
-  this.writeToPage = function () {
-    // this creates the list item to be filled on the HTML page
-    var sumCookieArray = this.sumCookies();
-    //this gets the array of labels to use on the HTML page
-    var labelsArray = this.createLabelArray();
-    //var writeNumOfCookies = document.createElement('li');  // what is this information ?
-      
-    // SETTING FOR LOOP TO TEST ITERATION OF TEXT GENERATION
-    for (var i = 0; i < sumCookieArray.length; i++) {
-      //writeToPage(sumCookieArray[i]);
-      var writeNumOfCookies = document.createElement('td');  // what is this information ?
-  
-      // write element text for HTML - label + number of cookies
-      writeNumOfCookies.textContent = (labelsArray[i] + sumCookieArray[i] + ' cookies');       // what is this information ?
-        
-      var elem = document.getElementById(this.elementId);
-      elem.appendChild(writeNumOfCookies);
-    }
+    this.cookieArray.push(cumuTotal);
   }
 }
 
-var pike = new Store('1st and Pike', 23, 65, 6.3, 'pike');
-pike.writeToPage();
+// FUNCTION TO PRINT INFO TO THE WEBPAGE AS A TABLE
+Store.prototype.render = function () {
+  var cookieArray = this.sumCookies();
 
-var seatac = new Store('SeaTac Airport', 3, 24, 1.2, 'seatac')
-seatac.writeToPage();
+  var trElement = document.createElement('tr');
+  var tdElementLocation = document.createElement('td');
 
-var seactr = new Store('Seattle Center', 11, 38, 3.7, 'seactr')
-seactr.writeToPage();
+  tdElementLocation.textContent = this.storeLocation;
+  trElement.appendChild(tdElementLocation);
 
-var caphill = new Store('Capitol Hill', 20, 38, 2.3, 'caphill')
-caphill.writeToPage();
+  for (var i = 0; i < storeHours.length; i++) {
 
-var alki = new Store('Alki', 2, 16, 4.6, 'alki')
-alki.writeToPage();
+    var tdElementCookies = document.createElement('td');
+    tdElementCookies.textContent = '';
+    tdElementCookies.textContent += this.cookieArray[i];
+    trElement.appendChild(tdElementCookies);
+  }
+  cookieSalesTable.appendChild(trElement);
+};
+
+
+function makeHeaderRow() {
+  var tableHead = document.createElement('thead');
+  var headerTrElement = document.createElement('tr');
+  var thElement = document.createElement('th');
+
+  thElement.textContent = 'Store Location';
+  headerTrElement.appendChild(thElement);
+
+  for (var i = 0; i < storeHours.length; i++) {
+    thElement = document.createElement('th');
+    thElement.textContent = storeHours[i];
+    headerTrElement.appendChild(thElement);
+    tableHead.appendChild(headerTrElement);
+  }
+  cookieSalesTable.appendChild(headerTrElement);
+}
+
+function makeFooterRow() {
+
+  var tFootElement = document.createElement('tfoot');
+  var footerTrElement = document.createElement('tr');
+  var footerTdElement = document.createElement('td');
+  footerTdElement.textContent = 'Totals';
+  footerTrElement.appendChild(footerTdElement);
+
+  for (var i = 0; i < storeHours.length; i++) {
+    var tdElement2 = document.createElement('td');
+    var cumuTotal = 0;
+
+    for (var index = 0; index < storeArray.length; index++) {
+      cumuTotal += storeArray[index].cookieArray[i];
+    }
+
+    tdElement2.textContent = '' + cumuTotal;
+    footerTrElement.appendChild(tdElement2);
+  }
+  tFootElement.appendChild(footerTrElement);
+  cookieSalesTable.appendChild(tFootElement);
+}
+
+var pike = new Store('1st and Pike', 23, 65, 6.3);
+var seatac = new Store('SeaTac Airport', 3, 24, 1.2);
+var seactr = new Store('Seattle Center', 11, 38, 3.7);
+var caphill = new Store('Capitol Hill', 20, 38, 2.3);
+var alki = new Store('Alki', 2, 16, 4.6);
+
+// CALL FUNCTIONS FOR HEADER & STORE ROWS
+makeHeaderRow();
+pike.render();
+seatac.render();
+seactr.render();
+caphill.render();
+alki.render();
+makeFooterRow();
+
+
+
+
 
