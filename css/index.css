@@ -42,6 +42,45 @@ p #loc {
   width: 75%;
 }
 
+section .merch {
+  float: left;
+  width: 800px;
+  border-right: 1px solid rgb(39, 39, 36);
+}
+
+article {
+  clear: both;
+  overflow: hidden;
+  width: 90%;
+}
+
+hgroup {
+  float: right;
+  margin-top: 20px;
+  text-align: right;
+
+}
+
+figure {
+  border: 1px solid #eeeeee;
+  float:left;
+  height: 250px;
+  width: 325px;
+  margin: 20px; 
+  padding: 5px
+}
+
+figcaption {
+  font-size: 90%;
+  text-align: center
+}
+
+img {
+  max-height: 100%;
+width: 325px
+}
+
+
 div #drivers {
   background-color: bisque;
   display: inline-block;
@@ -62,14 +101,6 @@ td {
   max-width: 800px;
   padding: 1em;
 
-}
-
-p #appeal {
-  background-color: bisque;
-  border: solid rgb(66, 63, 58) 1px;
-  box-sizing: border-box;
-  height: 75%;
-  width: 75%;
 }
 
 nav > ul {
