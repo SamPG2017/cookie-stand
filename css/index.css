@@ -30,6 +30,7 @@ div #fishframe img {
 
 div .storelocs {
   background-color: bisque;
+  box-sizing: border-box;
   display: inline-block;
   height: 250px;
   width: 200px;
@@ -41,21 +42,32 @@ p #loc {
   width: 75%;
 }
 
-div #testimonials {
+div #drivers {
   background-color: bisque;
   display: inline-block;
-  height: 250px;
-  width: 200px;
+  height: 150px;
 }
 
 table .goodstuff {
   background-color: aquamarine;
+}
+
+tr {
+  box-sizing: border-box;
+}
+
+td {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  padding: 1em;
 
 }
 
-p #custtest {
+p #appeal {
   background-color: bisque;
-  border-color: rgb(66, 63, 58);
+  border: solid rgb(66, 63, 58) 1px;
+  box-sizing: border-box;
   height: 75%;
   width: 75%;
 }

@@ -3,9 +3,9 @@
 
 <head>
   <title> Sales Figures </title>
-  <!-- <link rel="stylesheet" href="/css/reset.css"> -->
+  <link rel="stylesheet" href="/css/reset.css">
   <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
 </head>
 
 <body>
@@ -30,13 +30,14 @@
 
   <div>
     <h1> Sales Figures </h1>
-    <h2> Our cookies are OFF THE HOOK ! </h2>
-    <h3> Hi, Pat !</h3>
+    <h2> Hi, Pat !</h2>
   </div>
 
-  <hr> </hr>
-
-  <table id="cookieSalesTable"> Cookie Sales Per Hour by Store </table>
+  <div>
+    <p> Sales Per Hour Per Store </p>
+    <table id='cookieSalesTable'>
+    </table>
+  </div>
 
   <hr> </hr>
   <div>
@@ -59,7 +60,6 @@
       <!-- <input type="number" id="txtbox" name="Max-Cust-Per-Hour"> -->
       <input type="number" id="maxField" class="numbox" name="Max-Cust-Per-Hour">
 
-
       <!-- form field 4 -->
       <label> Avg Cookie Sale </label>
       <!-- These are actually GREAT cookie sales, not average. . . =D  -->
@@ -71,8 +71,7 @@
     </form>
   </div>
 
+  <script src="js/app.js"></script>
 </body>
--->
-<script src="js/app.js"> </script>
 
 </html>
