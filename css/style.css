@@ -1,23 +1,48 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 
-
 body {
   background-color: rgb(199, 120, 56);
   color: rgb(66, 63, 58);
+  text-align: center;
 };
+
+header > nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(90, 90, 86);
+}
+
+nav > ul > li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: rgb(64, 151, 110);
+}
 
 h1 {
   font-family: 'Permanent Marker', cursive, serif; 
   font-size: 48px;
-  text-shadow: 2px 2px 7px rgb(39, 39, 36);
   text-align: center;
+  text-shadow: 2px 2px 7px rgb(39, 39, 36);
 };
 
 h2 {
   color: wheat;
-  /* font-family: 'Permanent Marker', cursive, serif; */
-  text-align: center;
+  font-family: 'Permanent Marker', cursive, serif; 
 };
+
+
 
 div ul li {
   text-align: center;
@@ -27,24 +52,8 @@ img {
   width: 100px;
 }
 
-/*table.name tr:first-child {
-  background: #ccc;
-}
-*/
-
-table.name td {
-  border: 1px solid #ccc
-}
-
-/*
-table.name tr:nth-child(odd) {
-  background: grey;
-}
-*/
-
 table tr {
   background:  rgb(39, 39, 36);
-    /*border: 2 px solid rgb(66, 63, 58);  */
   border: 1px solid black;
   border-radius: 15px; 
   padding: .25em .75em;
@@ -54,7 +63,7 @@ table tr {
 table tr td {
   background:  wheat;
   border: 1px solid black;
-  border-radius: 15px; 
+  border-radius: 10px; 
   padding: .25em .75em;
   width: 80%;
 }
@@ -64,37 +73,17 @@ table tr td :hover {
   background: rgb(32, 32, 32);
 }
 
-body nav p id="More Info" {
+body nav p {
   width: 50;
   padding: 10em 30em;
   margin: 10em 30em;
 }
 
-/*
-
-li {
-  list-style-type: disc;
-}
-
-li li {
-  list-style-type: circle;
-}
-
-
-a: link {
-  color: (rgb);
-  text-decoration: none;}
-}
-
-a: visited {
-  color: red;
+section .storelist {
+  font-size: 18px;
   }
 
-a: hover {
-  color: (rgb);
-  text-decoration: underline;
+img {
+  width: 500px;
 }
 
-a: active {
-  color: brown;
-}
