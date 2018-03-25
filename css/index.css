@@ -6,6 +6,10 @@ body {
   text-align: center;
 };
 
+div {
+  margin: 4em 1em;
+}
+
 div h1 {
   font-family: 'Permanent Marker', cursive, serif; 
   font-size: 48px;
@@ -19,60 +23,107 @@ div h2 {
   text-align: center;
 };
 
-
-div .fishframe img {
+div #fishframe img {
   border: 3px ridge rgb(56, 26, 2);
   width: 100px;
 }
 
-table .cookieSalesTable  {
-  background: rgb(61, 59, 57);
-  border: 1px solid black;
-  border-radius: 15px;
-  margin: 1em; 
-  padding: 1em;
-  text-align: center;
-}
-
-
-table .cookiesSalesTable tr td {
-  background: rgb(61, 59, 57);
-  border-radius: 15px;
-  margin: 1em; 
-  padding: 1em;
-  text-align: right;
-  text-decoration-color: beige;
-}
-
-
-
-table tr td {
-  background-color: rgb(194, 192, 189);
-  border-radius: 15px;
-  font-size: 1.1em; 
-  margin: .5em .5em; 
-  padding: .5em .5em;
-  text-align: right;
-  
-  text-decoration-color: beige;
-}
-
- table tr td :hover {
-    color: rgb(78, 76, 76);
-  }
-
-
-form .AddStore fieldset .New-Location {
-  margin: 10 0;
-}
-
-div #numbox {
-  width: 10px;
-  margin: .75em;
-}
-
- nav a {
+div .storelocs {
+  background-color: bisque;
+  box-sizing: border-box;
   display: inline-block;
-  margin: 1em; 
-/*   padding: 1em;   */
+  height: 250px;
+  width: 200px;
 }
+
+p #loc {
+  background-color: bisque;
+  height: 75%;
+  width: 75%;
+}
+
+section .merch {
+  float: left;
+  width: 800px;
+  border-right: 1px solid rgb(39, 39, 36);
+}
+
+article {
+  clear: both;
+  overflow: hidden;
+  width: 90%;
+}
+
+hgroup {
+  float: right;
+  margin-top: 20px;
+  text-align: right;
+
+}
+
+figure {
+  border: 1px solid #eeeeee;
+  float:left;
+  height: 250px;
+  width: 325px;
+  margin: 20px; 
+  padding: 5px
+}
+
+figcaption {
+  font-size: 90%;
+  text-align: center
+}
+
+img {
+  max-height: 100%;
+width: 325px
+}
+
+
+div #drivers {
+  background-color: bisque;
+  display: inline-block;
+  height: 150px;
+}
+
+table .goodstuff {
+  background-color: aquamarine;
+}
+
+tr {
+  box-sizing: border-box;
+}
+
+td {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  padding: 1em;
+
+}
+
+nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(90, 90, 86);
+}
+
+nav > ul > li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: rgb(64, 151, 110);
+}
+
